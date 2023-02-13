@@ -8,40 +8,113 @@ public class main {
 	public class Main {
 	    static ArrayList<Karyawan> karyawanList = new ArrayList<>();
 	    static Scanner input = new Scanner(System.in);
+	    class Employee {
+	    	  private String code;
+	    	  private String name;
+	    	  private String gender;
+	    	  private String position;
+	    	  private int salary;
+	    	  
+	    	  public Employee(String code, String name, String gender, String position, int salary) {
+	    	    this.code = code;
+	    	    this.name = name;
+	    	    this.gender = gender;
+	    	    this.position = position;
+	    	    this.salary = salary;
+	    	  }
+	    	  
+	    	  public String getCode() {
+	    	    return code;
+	    	  }
+	    	  
+	    	  public String getName() {
+	    	    return name;
+	    	  }
+	    	  
+	    	  public String getGender() {
+	    	    return gender;
+	    	  }
+	    	  
+	    	  public String getPosition() {
+	    	    return position;
+	    	  }
+	    	  
+	    	  public int getSalary() {
+	    	    return salary;
+	    	  }
+	    	  
+	    	  public void setCode(String code) {
+	    	    this.code = code;
+	    	  }
+	    	  
+	    	  public void setName(String name) {
+	    	    this.name = name;
+	    	  }
+	    	  
+	    	  public void setGender(String gender) {
+	    	    this.gender = gender;
+	    	  }
+	    	  
+	    	  public void setPosition(String position) {
+	    	    this.position = position;
+	    	  }
+	    	  
+	    	  public void setSalary(int salary) {
+	    	    this.salary = salary;
+	    	  }
+	    	  
+	    	  public void display() {
+	    	    System.out.println("Code: " + code);
+	    	    System.out.println("Name: " + name);
+	    	    System.out.println("Gender: " + gender);
+	    	    System.out.println("Position: " + position);
+	    	    System.out.println("Salary: " + salary);
+	    	  }
+	    	}
 
-	    public static void main(String[] args) {
-	        int pilihan;
-	        do {
-	            System.out.println("Menu:");
-	            System.out.println("1. Insert Data Karyawan");
-	            System.out.println("2. View Data Karyawan");
-	            System.out.println("3. Update Data Karyawan");
-	            System.out.println("4. Delete Data Karyawan");
-	            System.out.println("0. Keluar");
-	            System.out.print("Masukkan pilihan: ");
-	            pilihan = input.nextInt();
+	    	class EmployeeData {
+	    	  private ArrayList<Employee> employees;
+	    	  
+	    	  public EmployeeData() {
+	    	    employees = new ArrayList<Employee>();
+	    	  }
+	    	  
+	    	  public void insertData(Employee employee) {
+	    	    employees.add(employee);
+	    	  }
+	    	  
+	    	  public void viewData() {
+	    	    Collections.sort(employees, new Comparator<Employee>() {
+	    	      public int compare(Employee e1, Employee e2) {
+	    	        return e1.getName().compareTo(e2.getName());
+	    	      }
+	    	    });
+	    	    
+	    	    System.out.println("Employee Data:");
+	    	    for (int i = 0; i < employees.size(); i++) {
+	    	      System.out.println("\nEmployee " + (i + 1));
+	    	      employees.get(i).display();
+	    	    }
+	    	  }
+	    	  
+	    	  public void updateData(int index, Employee employee) {
+	    	    employees.set(index, employee);
+	    	  }
+	    	  
+	    	  public void deleteData(int index) {
+	    	    employees.remove(index);
+	    	  }
+	    	}
 
-	            switch (pilihan) {
-	                case 1:
-	                    insertDataKaryawan();
-	                    break;
-	                case 2:
-	                    viewDataKaryawan();
-	                    break;
-	                case 3:
-	                    updateDataKaryawan();
-	                    break;
-	                case 4:
-	                    deleteDataKaryawan();
-	                    break;
-	                case 0:
-	                    System.out.println("Terima kasih telah menggunakan aplikasi ini.");
-	                    break;
-	                default:
-	                    System.out.println("Pilihan tidak valid, silakan masukkan pilihan yang benar.");
-	            }
-	        } while (pilihan != 0);
-	    }
+	    	public class Main {
+	    	  private static Scanner input = new Scanner(System.in);
+	    	  
+	    	  public static void main(String[] args) {
+	    	    EmployeeData employeeData = new EmployeeData();
+	    	    int choice = 0;
+	    	    
+	    	    do {
+	    	      System.out.println
 
 	    private static void insertDataKaryawan() {
 	        System.out.print("Masukkan nama karyawan: ");
